@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState, useEffect } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Html, OrbitControls, useCursor, RoundedBox } from "@react-three/drei";
@@ -482,6 +482,7 @@ function CRTScreen({
                        label,
                        href,
                        videoSrc,
+                       disabled,
                        position,
                        rotation = [0, 0, 0],
                        scale = 1,
