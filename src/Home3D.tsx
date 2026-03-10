@@ -18,7 +18,7 @@ const LINKS = [
         disabled: true,
         videoSrc:"/videos/MattK.mp4"},
     { label: "Freelance",
-        href: "https://outerscopemedia.com/",
+        href: "https://outerscopemedia.com/free-lance/",
         videoSrc:"/videos/Cranberry.mp4"},
     { label: "SomethingAboutBooks",
         href: "https://outerscopemedia.com/something-about-books/",
