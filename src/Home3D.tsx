@@ -742,7 +742,7 @@ void main() {
             </mesh>
 
             {/* HOVER LABEL */}
-            {(hovered || isMobile)&& (
+            {(hovered )&& (
                 <Html position={[0, frontH * 0.25, frontD / 1.1]} center transform style ={{pointerEvents: "none"}}>
                     <div className="select-none rounded-full border border-zinc-700 bg-black/70 px-2 py-1 text-[5px] uppercase tracking-[0.25em] text-zinc-100 backdrop-blur hover:bg-white hover:text-black">
                         {label}
