@@ -22,7 +22,7 @@ const LINKS = [
         videoSrc:"/videos/Cranberry.mp4"},
     { label: "SomethingAboutBooks",
         href: "https://outerscopemedia.com/something-about-books/",
-        videoSrc:"/ideos/MattKennard.mp4"},
+        videoSrc:"/videos/MattKennard.mp4"},
     { label: "Coming Soon",
         href: "/",
         disabled: true,
@@ -101,7 +101,7 @@ export default function Home3D() {
                     <OrbitControls
                         enabled={introDone}
                         target={[0, 1.2, -2.6]}
-                        enablePan={true}
+                        enablePan={!isMobile}
                         minDistance={isMobile ? 3.0 : 2.2}
                         maxDistance={isMobile ? 8.5 : 7.0}
                         minPolarAngle={0.2}
@@ -509,6 +509,7 @@ function CRTScreen({
         v.crossOrigin = "anonymous";
         v.loop = true;
         v.playsInline = true;
+        v.setAttribute("playsinline", "");
         v.preload = "auto";
         v.muted = true;       // start muted (autoplay rules)
         v.autoplay = true;
@@ -738,7 +739,7 @@ void main() {
             </mesh>
 
             {/* HOVER LABEL */}
-            {hovered && (
+            {(hovered || isMobile)&& (
                 <Html position={[0, frontH * 0.25, frontD / 1.1]} center transform style ={{pointerEvents: "none"}}>
                     <div className="select-none rounded-full border border-zinc-700 bg-black/70 px-2 py-1 text-[5px] uppercase tracking-[0.25em] text-zinc-100 backdrop-blur hover:bg-white hover:text-black">
                         {label}
@@ -746,13 +747,21 @@ void main() {
                 </Html>
             )}
 
-            {hovered && video && (
-                <Html position={[0, frontH * 0.009, frontD / 1.1]} center transform style={{pointerEvents:"none"}} >
+            {(hovered || useIsMobile()) && video && (
+                <Html
+                    position={[0, frontH * 0.009, frontD / 1.1]}
+                    center
+                    transform
+                    style={{ pointerEvents: "none" }}
+                >
                     <button
-                        style={{pointerEvents:"auto"}}
+                        style={{ pointerEvents: "auto", touchAction: "manipulation" }}
                         onClick={(e) => {
                             e.stopPropagation();
                             setMuted((m) => !m);
+                        }}
+                        onTouchStart={(e) => {
+                            e.stopPropagation();
                         }}
                         className="rounded-full border border-zinc-700 bg-black/70 px-2 py-1 text-[5px] uppercase tracking-[0.2em] text-zinc-100 backdrop-blur hover:bg-white hover:text-black"
                     >
