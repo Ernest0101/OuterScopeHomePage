@@ -335,6 +335,7 @@ function CRTWall({
                         disabled={l.disabled}
                         position={[x, y, 0]}
                         scale={tvScale}
+                        isMobile={isMobile}
                     />
                 );
             })}
@@ -486,6 +487,7 @@ function CRTScreen({
                        position,
                        rotation = [0, 0, 0],
                        scale = 1,
+                       isMobile,
                    }: {
     label: string;
     href: string;
@@ -494,6 +496,7 @@ function CRTScreen({
     rotation?: [number, number, number];
     scale?: number;
     disabled?:boolean;
+    isMobile: boolean;
 })
 
 {
@@ -747,7 +750,7 @@ void main() {
                 </Html>
             )}
 
-            {(hovered || useIsMobile()) && video && (
+            {(hovered || isMobile) && video && (
                 <Html
                     position={[0, frontH * 0.009, frontD / 1.1]}
                     center
